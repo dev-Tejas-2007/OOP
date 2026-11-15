@@ -1,1 +1,61 @@
-
+#include<iostream>
+using namespace std;
+class staff{
+private:
+    int staff_id;
+    string name;
+    float salary;
+    double da,hra,itax,netsal;
+public:
+    void entry(){
+        cout<<"enter the id:\t"<<endl;
+        cin>>staff_id;
+        cout<<"enter the name:\t"<<endl;
+        cin>>name;
+        cout<<"enter the salary:\t"<<endl;
+        cin>>salary;
+    }
+    void cal(){
+        da=salary*0.25;
+        hra=800;
+        itax=salary*0.15;
+        netsal=salary+da+hra-itax;
+    }
+    void display(){
+        cout<<"staff id is:\t"<<staff_id<<endl;
+        cout<<" staff member name is:\t"<<name<<endl;
+        cout<<"staff salary is:\t"<<salary<<endl;
+        cout<<"staff da is:\t"<<da<<endl;
+        cout<<"staff hra is:\t"<<hra<<endl;
+        cout<<"staff itax is:\t"<<itax<<endl;
+        cout<<"staff net salary  is:\t"<<netsal<<endl;
+    }
+    int id(){
+        return staff_id;
+    }
+};
+int main(){
+    int i,j,n;
+    cout<<"enter the number of staff members:\t"<<endl;
+    cin>>n;
+    staff s[n];
+    
+    cout<<"enter the details:\t"<<endl;
+   for(i=0;i<n;i++){
+        cout<<"member no:"<<i+1<<endl;
+        s[i].entry();
+        s[i].cal();
+    }
+    for(i=0;i<n-1;i++){
+        for(j=i+1;j<n;j++){
+            if(s[i].id() > s[j].id()){
+                swap(s[i],s[j]);
+            }
+        }
+    }
+    cout<<"the staff details:\n";
+    for(i=0;i<n;i++){
+        s[i].display();
+    }
+    return 0;
+}
