@@ -1,0 +1,139 @@
+OOP Practicals (Exp 1-10): All Algorithms, Written Out
+Experiment 1: Complex Number Operations (Operator Overloading)
+Start the program.
+Create a class Complex with private data members real and imag.
+Define a default constructor that sets the number to 0+0i, and a parameterized constructor that sets the given values.
+Overload + as a member function. Create a temporary object where temp.real = real + c.real and temp.imag = imag + c.imag, then return it.
+Overload * as a member function. Compute temp.real = real*c.real - imag*c.imag and temp.imag = real*c.imag + imag*c.real, then return it.
+Overload >> as a friend function to read the real and imaginary parts from the user.
+Overload << as a friend function to print the number in a+bi form. Print the + sign only when imag >= 0.
+In main(), read c1 and c2, compute sum = c1 + c2 and product = c1 * c2, and display all four numbers.
+Stop.
+
+
+
+
+
+Experiment 2: Staff Payroll Management & Sorting
+Start the program.
+Create a class staff with data members Staff_ID, name, Basic_Salary, DA, HRA, Itax and NetSalary.
+accept() reads the ID, name and basic salary.
+calculate() computes:
+DA = 25% of Basic
+HRA = 800
+Itax = 15% of Basic
+NetSalary = Basic + DA + HRA − Itax
+display() prints the pay slip, and getName() returns the name.
+In main(), read n and create an array of n staff objects.
+For each staff member, call accept() and then calculate().
+Sort the array by name. For i = 0..n-2 and j = i+1..n-1, if s[i].getName() > s[j].getName(), swap s[i] and s[j].
+Display the pay slip of every staff member in sorted order.
+Stop.
+
+
+
+
+Experiment 3: Publication Management & Exception Handling
+Start the program.
+Create a base class publications with protected members title and price.
+details() reads the title (using getline) and the price inside a try block. If price < 0, it throws the price.
+catch(...) prints an error message and calls setting_zero(), which sets title to “Invalid” and price to 0.
+Derive class book (adds pagecount) and class disc (adds playing time) from publications.
+details_book() and details_disc() call details(), then read the extra field inside a try block. If the value is negative, they throw it, and the catch sets the field to 0.
+display_book() and display_disc() print the common data plus the extra field.
+In main(), create one book and one disc object, read their details and display them.
+Stop.
+
+
+
+
+Experiment 4: Matrix ADT Operations
+Start the program.
+Create a class Matrix with row, col and a 10×10 array a.
+readMatrix() reads the order and the elements. displayMatrix() prints them row by row, separated by tabs.
+Addition: if the rows and columns of both matrices are equal, set temp[i][j] = a[i][j] + m.a[i][j]. Otherwise print “not possible”.
+Subtraction: use the same condition, with temp[i][j] = a[i][j] - m.a[i][j].
+Multiplication: if col of the first equals row of the second, then for each i and j:
+Set temp[i][j] = 0.
+For k = 0..col-1, do temp[i][j] += a[i][k] * m.a[k][j].
+The result order is row × m.col.
+isValid() returns true only if the result has row > 0 and col > 0.
+In main(), read A and B, display them, then perform and show the three operations.
+Stop.
+
+
+
+Experiment 5: Constructor & Destructor Order in Multiple Inheritance
+Start the program.
+Create a base class Student (with rollNo) and a base class Sports (with sportsMarks). Each has a default constructor, a parameterized constructor, a copy constructor, and a destructor that prints a message.
+Create class Result : public Student, public Sports with a totalMarks member.
+Write Result’s default, parameterized and copy constructors using an initializer list (: Student(r), Sports(s)), plus a destructor.
+display() prints rollNo, sportsMarks and totalMarks.
+In main(), create r1 (default), r2(101, 25, 450) (parameterized) and r3(r2) (copy), and display each.
+When main() ends, the objects are destroyed in reverse order (r3, r2, r1). Within each object the order is Result, then Sports, then Student.
+Stop.
+
+
+
+Experiment 6: File Input and Output
+Start the program. Include <fstream>, <iostream> and <string>.
+Create an output file stream outFile for sample_output.txt.
+If outFile.is_open() is false, print an error and exit.
+Write four lines of text (including the integer 100) to the file, then call close().
+Create an input file stream inFile for the same file. If it fails to open, print an error and exit.
+Using while (getline(inFile, line)), read the file line by line and print each line on the screen.
+Close inFile.
+Stop.
+
+
+
+Experiment 7: Types of Inheritance
+Start the program. Put each inheritance example in its own namespace so class names like Student and Result do not clash.
+Single: Result derives from Student. A Result object calls both getStudent() and displayResult().
+Multiple: Student derives from both Academic and Sports. It uses academicMarks(), sportsMarks() and its own display().
+Multilevel: Person → Student → Result. A Result object can call the functions of all three classes.
+Hierarchical: Developer and Manager both derive from Employee. Each object calls the common function and its own function.
+Each namespace has a run() function that creates the objects and calls the functions.
+main() calls the four run() functions in order.
+Stop.
+
+
+
+Experiment 8: Generic Library Management using Class Templates
+Start the program. Declare template <class T> class Library with members T bookID, string bookName, string author and bool issued.
+The constructor stores the id, name and author, and sets issued = false.
+display() prints the id, name, author and status (“Issued” or “Available”).
+issueBook(): if the book is not issued, set issued = true and print success. Otherwise print “already issued”.
+returnBook(): if the book is issued, set issued = false and print success. Otherwise print “was not issued”.
+In main(), create Library<int> book1(101, ...) and Library<string> book2("CS102", ...).
+Display book1, issue it, display it again, then display book2.
+Stop.
+
+
+
+Experiment 9: State Population Lookup using STL Map
+Start the program. Include <map>, <string> and <iostream>.
+Declare map<string, long long> statePopulation, where the key is the state name and the value is the population.
+Insert the seven states with their populations using statePopulation["name"] = value.
+Read the state name from the user using getline.
+Search with statePopulation.find(stateName) and store the iterator it.
+If it != statePopulation.end(), print it->second (the population). Otherwise print “State not found”.
+Stop.
+
+
+
+
+Experiment 10: ATM Machine Simulation & Exception Handling
+Start the program. Create custom exceptions ArithmeticException (derived from runtime_error) and IllegalArgumentException (derived from invalid_argument).
+Create a class ATM with balance (initially Rs. 10000) and the functions checkBalance(), deposit() and withdraw().
+deposit(): if amount <= 0, throw IllegalArgumentException. Otherwise add the amount to the balance.
+withdraw():
+If amount <= 0, throw IllegalArgumentException.
+If amount > balance, throw ArithmeticException("Insufficient funds").
+Otherwise subtract the amount from the balance.
+In main(), run an infinite menu loop with the options 1. Balance, 2. Deposit, 3. Withdraw, 4. Exit.
+Inside try, read the choice. If cin.fail(), clear the error, discard the bad input and throw IllegalArgumentException.
+Use a switch to run the selected operation. Invalid choices throw IllegalArgumentException. Choice 4 prints a thank-you message and returns.
+The catch blocks print the error message using e.what().
+After each transaction, print “Transaction completed” (this acts like finally), then repeat the loop.
+Stop.
