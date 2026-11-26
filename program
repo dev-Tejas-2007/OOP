@@ -1,0 +1,43 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+int main(){
+    string filename="sample.txt";
+    ofstream outfile(filename);
+    if(!outfile){
+        cout<<"\nthe file cant be open";
+        return 1;
+        
+    }
+    outfile<<"Line1:file is created"<<endl;
+    outfile<<"Line2:my name is tejas"<<endl;
+    outfile<<"Line3:hello friends"<<endl;
+    outfile.close();
+    cout<<"\nthe file contents are added";
+    
+    ifstream infile(filename);
+    if(!infile){
+        cout<<"the file cant be open for reading "<<endl;
+        return 1;
+        
+    }
+    cout<<"\nthe file content is:"<<endl;
+    string line;
+    while(getline(infile,line));
+    cout<<line<<endl;
+
+    return 0;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
